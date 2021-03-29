@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LEO-WORLD | PRODUCT</title>
+        <!-- Linking the CSS -->
+        <link rel="stylesheet" href="/p/CSS/general.css" />
+        <link rel="stylesheet" href="/p/CSS/head_foot.css" />
+        <link rel="stylesheet" href="/p/CSS/product.css" />
+        <!-- Linking the Jquery -->
+        <script src="/p/JS/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <div class="header" id="header">
+            <!-- Code inserted using Javascript -->
+        </div>
+        <div class="content" id="productcontent"></div>
+        <div class="footer" id="footer">
+            <!-- Code inserted using Javascript -->
+        </div>
+        <!-- Javascript here -->
+        <script src="/p/JS/general.js"></script>
+        <script src="/p/JS/head_foot.js"></script>
+        <script src="/p/JS/request.js"></script>
+        <script src="/p/JS/display.js"></script>
+        <script>
+            $(document).ready(function () {
+                get_header();
+                get_footer();
+                get_product();
+            });
+        </script>
+    </body>
+</html>

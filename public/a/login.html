@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LEO-WORLD | LOGIN</title>
+        <!-- Linking the CSS -->
+        <link rel="stylesheet" href="/p/CSS/general.css" />
+        <link rel="stylesheet" href="/p/CSS/head_foot.css" />
+        <!-- Linking the Jquery -->
+        <script src="/p/JS/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <div class="header" id="header">
+            <!-- Code inserted using Javascript -->
+        </div>
+        <div class="content">
+            <div class="form">
+                <center>
+                    <p id="title">Login to Continue :)</p>
+                    <div class="err" id="err"></div>
+                    <form>
+                        <input
+                            class="input"
+                            type="text"
+                            name="Username"
+                            id="username"
+                            placeholder="Username"
+                            autocomplete="username"
+                        />
+                        <br />
+                        <input
+                            class="input"
+                            type="password"
+                            name="Password"
+                            id="password"
+                            placeholder="Password"
+                            autocomplete="current-password"
+                        />
+                        <br />
+                    </form>
+                    <button class="btn" id="btn-true" onclick="login()">
+                        LOGIN
+                    </button>
+                    <br />
+                    <button
+                        class="btn"
+                        id="btn-primary"
+                        onclick="go_to_web('/a/new_account')"
+                    >
+                        NEW HERE?
+                    </button>
+                </center>
+            </div>
+        </div>
+        <div class="footer" id="footer">
+            <!-- Code inserted using Javascript -->
+        </div>
+        <!-- Javascript here -->
+        <script src="/p/JS/general.js"></script>
+        <script src="/p/JS/head_foot.js"></script>
+        <script src="/p/JS/request.js"></script>
+        <script>
+            $(document).ready(function () {
+                if (getCookie("token") != "") {
+                    go_to_web("/u/home");
+                } else {
+                    get_header();
+                    get_footer();
+                }
+            });
+        </script>
+    </body>
+</html>

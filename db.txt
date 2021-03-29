@@ -1,0 +1,70 @@
+<User-Admin Profile Explaination>
+    <db name="users" >
+        <field name="_id" unique>
+        <field name="name">
+        <field name="username" unique>
+        <field name="password">
+        <field name="token">
+        <field name="type" value={U,A}>
+        <field name="address" value={
+            <field name="city">
+            <field name="state">
+            <field name="country">
+        }>
+        <field name="personal" value={
+            <field name="mobile">
+            <field name="email" unique>
+        }>
+    </db>
+
+<Cart Explaination>
+    <db name="cart" >
+        <field name="_id" unique>
+        <field name="uid" unique>
+        <field name="username">
+        <field name="address" Array value={
+            <field name="item_id">
+            <field name="item_qty">
+        }>
+        <field name="isDeleted">
+    </db>
+
+<Order Explaination>
+    <db name="order" >
+        <field name="_id" unique>
+        <field name="uid" unique>
+        <field name="username">
+        <field name="cart" Array value={
+            <field name="item_id">
+            <field name="item_qty">
+        }>
+        <field name="detail" Array value={
+            <field name="name">
+            <field name="msg">
+            <field name="address">
+            <field name="mobile_no">
+        }>
+        <field name="pay_type">
+        <field name="pay_amount">
+        <field name="pay_id" uid>
+        <field name="status">
+        <field name="isDeleted">
+    </db>
+
+<Product Explaination>
+    <db name="product" >
+        <field name="_id" unique>
+        <field name="name">
+        <field name="price">
+        <field name="img">
+        <field name="soldBy">
+        <field name="category">
+        <field name="rating" value={
+            <field name="uid">
+            <field name="stars">
+            <field name="comment">
+        }>
+        <field name="details">
+        <field name="specs" Array>
+        <field name="isDeleted">
+    </db>

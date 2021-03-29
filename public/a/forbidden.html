@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>404! Forbidden</title>
+        <style>
+            * {
+                margin: 0px;
+                font-family: "Calibri";
+                font-style: italic;
+                text-align: center;
+                color: #ffffff;
+            }
+            .box {
+                background-color: tomato;
+            }
+            .title#title {
+                font-weight: 700;
+            }
+            .subtitle#subtitle {
+                font-weight: 500;
+            }
+            @media only screen and (max-width: 700px) {
+                /* For mobile */
+                .box {
+                    padding: 10vw;
+                    margin: 10vw;
+                }
+                .title#title {
+                    font-size: 30vw;
+                }
+                .subtitle#subtitle {
+                    font-size: 6vw;
+                }
+            }
+
+            @media only screen and (min-width: 700px) {
+                /* For desktop */
+                .box {
+                    padding: 5vw;
+                    margin: 1vw 10vw;
+                }
+                .title#title {
+                    font-size: 10vw;
+                }
+                .subtitle#subtitle {
+                    font-size: 2vw;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+            <div class="box">
+                <p class="title" id="title">404!</p>
+                <p class="subtitle" id="subtitle">
+                    Sorry Sir/Madam, You do not have access to this page and
+                    it's content! If you have any problem please drop a mail
+                    <a href="mailto:dev.malay.290@gmail.com">HERE!</a>
+                </p>
+            </div>
+        </center>
+    </body>
+</html>

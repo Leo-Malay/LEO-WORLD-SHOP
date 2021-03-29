@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    font-family: Verdana;
+}
+.btn,
+.btn-qty,
+.btn-cat {
+    outline: none;
+    border: none;
+    color: #eefbfb;
+}
+.btn {
+    font-weight: 500;
+}
+.btn-qty {
+    font-weight: 700;
+}
+#btn-false {
+    background-color: Tomato;
+}
+#btn-primary {
+    /*background-color: DodgerBlue;*/
+    background-color: #4da8da;
+}
+#btn-true {
+    background-color: MediumSeaGreen;
+}
+#btn-title {
+    font-size: 20px;
+    font-weight: 700;
+    width: 50%;
+    background-color: #1f2833;
+    color: #ffffff;
+}
+.input {
+    outline: none;
+}
+#title {
+    font-weight: 600;
+}
+#error {
+    width: fit-content;
+    background-color: #fd5050;
+    color: #eefbfb;
+}
+
+@media only screen and (max-width: 700px) {
+    /* For mobile */
+    .btn,
+    .btn-qty {
+        font-size: 12.5px;
+    }
+    .btn {
+        min-width: 150px;
+        padding: 5px;
+        margin: 5px;
+    }
+    .btn-qty {
+        width: 25px;
+        height: 25px;
+        padding: 3px;
+        margin: 5px;
+    }
+    .input {
+        font-size: 12.5px;
+        width: 200px;
+        padding: 5px;
+        margin: 5px;
+    }
+    #title {
+        font-size: 20px;
+    }
+    #subtitle {
+        font-size: 12px;
+    }
+    #title,
+    #subtitle {
+        padding: 5px;
+    }
+    form {
+        padding: 10px;
+    }
+    #error {
+        font-size: 10px;
+        padding: 5px 10px;
+        border-radius: 20px;
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    /* For desktop */
+    .btn,
+    .btn-qty {
+        font-size: 15px;
+    }
+    .btn {
+        min-width: 200px;
+        padding: 5px;
+        margin: 5px;
+    }
+    .btn-qty {
+        width: 30px;
+        height: 30px;
+        padding: 3px;
+        margin: 5px;
+    }
+    .input {
+        font-size: 15px;
+        width: 200px;
+        padding: 5px;
+        margin: 6px;
+    }
+    #title {
+        font-size: 30px;
+    }
+    #subtitle {
+        font-size: 20px;
+    }
+    #title,
+    #subtitle {
+        padding: 8px;
+    }
+    form {
+        padding: 10px;
+    }
+    #error {
+        font-size: 10px;
+        padding: 5px 10px;
+        border-radius: 20px;
+    }
+}

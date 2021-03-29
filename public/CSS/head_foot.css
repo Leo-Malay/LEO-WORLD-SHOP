@@ -1,0 +1,131 @@
+.header,
+.footer {
+    width: 100%;
+    content: "";
+    clear: both;
+    display: table;
+    overflow: auto;
+    border-bottom: 3px solid #000000;
+    color: #eefbfb;
+    background-color: #12232e;
+    cursor: pointer;
+}
+.header {
+    margin-bottom: 20px;
+}
+.footer {
+    margin-top: 20px;
+}
+.subheader {
+    float: right;
+    display: inline-flex;
+}
+.header #title,
+.footer #title {
+    font-weight: 800;
+    float: left;
+}
+.header #subtitle,
+.footer #subtitle {
+    font-weight: 500;
+    float: left;
+}
+.page {
+    width: 90%;
+    content: "";
+    clear: both;
+    display: table;
+    overflow: auto;
+}
+.header-drop-btn {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.header-drop-down {
+    position: relative;
+    display: inline-block;
+}
+.header-drop-down-content {
+    display: none;
+    right: 0;
+    position: absolute;
+    background-color: #f8f8f8;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+.header-drop-down-content a {
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+.header-drop-down-content a:hover {
+    background-color: #eeecec;
+}
+.header-drop-down:hover .header-drop-down-content {
+    display: block;
+}
+.header-drop-down:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+@media only screen and (max-width: 700px) {
+    /* For mobile */
+    .subheader {
+        padding: 10px;
+    }
+    .header #title,
+    .footer #title {
+        font-size: 25px;
+        padding: 10px;
+    }
+    .header #subtitle,
+    .footer #subtitle {
+        font-size: 12px;
+        padding: 5px;
+        padding-top: 20px;
+    }
+    .header-drop-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 15px;
+    }
+    .header-drop-down-content a {
+        padding: 10px;
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    /* For desktop */
+    .subheader {
+        padding: 12px;
+    }
+    .header #title,
+    .footer #title {
+        font-size: 30px;
+        padding: 12px;
+    }
+    .header #subtitle,
+    .footer #subtitle {
+        font-size: 15px;
+        padding: 24px;
+    }
+    .page-left {
+        float: left;
+        width: 60%;
+    }
+    .page-right {
+        float: right;
+        width: 40%;
+    }
+    .header-drop-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 15px;
+    }
+    .header-drop-down-content a {
+        width: 100px;
+        padding: 12px;
+    }
+}

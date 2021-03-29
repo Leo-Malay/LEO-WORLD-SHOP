@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LEO-WORLD | NEW PRODUCT</title>
+        <!-- Linking the CSS -->
+        <link rel="stylesheet" href="/p/CSS/general.css" />
+        <link rel="stylesheet" href="/p/CSS/admin.css" />
+        <link rel="stylesheet" href="/p/CSS/head_foot.css" />
+        <!-- Linking the Jquery -->
+        <script src="/p/JS/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <div class="header" id="header">
+            <!-- Code inserted using Javascript -->
+        </div>
+        <div class="content" id="content">
+            <center>
+                <p class="value" id="title">New Product :)</p>
+                <form>
+                    <table>
+                        <tr>
+                            <td><label for="">Name</label></td>
+                            <td>
+                                <input
+                                    type="text"
+                                    class="input"
+                                    name="name"
+                                    id="name"
+                                    placeholder="Name of Product"
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Price</label></td>
+                            <td>
+                                <input
+                                    type="text"
+                                    class="input"
+                                    name="price"
+                                    id="price"
+                                    placeholder="Price of Product"
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Image URL</label></td>
+                            <td>
+                                <input
+                                    type="text"
+                                    class="input"
+                                    name="img"
+                                    id="img"
+                                    placeholder="Image URL"
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Category</label></td>
+                            <td>
+                                <input
+                                    type="text"
+                                    class="input"
+                                    name="category"
+                                    id="category"
+                                    placeholder="Valid Category"
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Details</label></td>
+                            <td>
+                                <textarea
+                                    class="input"
+                                    name="detail"
+                                    id="detail"
+                                    cols="30"
+                                    rows="10"
+                                    placeholder="Details (Can include HTML)"
+                                ></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="">Specifications</label></td>
+                            <td>
+                                <textarea
+                                    class="input"
+                                    name="specs"
+                                    id="specs"
+                                    cols="30"
+                                    rows="10"
+                                    placeholder="Specification (Format: Name=Value;Name2=Value2;)"
+                                ></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <button class="btn" id="btn-primary">Submit</button>
+            </center>
+        </div>
+        <div class="footer" id="footer">
+            <!-- Code inserted using Javascript -->
+        </div>
+        <!-- Javascript here -->
+        <script src="/p/JS/general.js"></script>
+        <script src="/p/JS/head_foot.js"></script>
+        <script src="/p/JS/request.js"></script>
+        <script src="/p/JS/display.js"></script>
+        <script>
+            $(document).ready(function () {
+                get_header();
+                get_footer();
+            });
+        </script>
+    </body>
+</html>

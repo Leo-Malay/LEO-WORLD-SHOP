@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" text="&#128722;" />
+        <title>LEO-WORLD | Billing</title>
+        <!-- Linking the CSS -->
+        <link rel="stylesheet" href="/p/CSS/general.css" />
+        <link rel="stylesheet" href="/p/CSS/head_foot.css" />
+        <link rel="stylesheet" href="/p/CSS/order.css" />
+        <!-- Linking the Jquery -->
+        <script src="/p/JS/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <div class="header" id="header">
+            <!-- Code inserted using Javascript -->
+        </div>
+        <center>
+            <div class="content" id="content">
+                <div class="page">
+                    <div class="page-left" style="text-align: left">
+                        <div style="width: 100%">
+                            <p class="pay" id="title">
+                                Enter the following details :)
+                            </p>
+                            <form>
+                                <input
+                                    type="text"
+                                    class="input"
+                                    name="rname"
+                                    id="rname"
+                                    placeholder="Name of Reciever"
+                                    onchange="display_address()"
+                                    required
+                                />
+                                <br />
+                                <input
+                                    type="text"
+                                    class="input"
+                                    name="msg"
+                                    id="msg"
+                                    placeholder="Message for Reciever"
+                                    onchange="display_address()"
+                                    required
+                                />
+                                <br />
+                                <textarea
+                                    name="addr"
+                                    class="input"
+                                    id="addr"
+                                    rows="5"
+                                    placeholder="Enter the Delivery Address"
+                                    onchange="display_address()"
+                                    required
+                                ></textarea>
+                                <br />
+                                <input
+                                    type="text"
+                                    class="input"
+                                    name="mobile_no"
+                                    id="mobile_no"
+                                    placeholder="Mobile No."
+                                    onchange="display_address()"
+                                    required
+                                />
+                                <br />
+                            </form>
+                        </div>
+                    </div>
+                    <div class="page-right" style="text-align: left">
+                        <div class="order_box" id="order_box">
+                            <p><b>To Dear, </b></p>
+                            <p><b>Message: </b></p>
+                            <div class="inline" id="inline">
+                                <p><b>Address: </b></p>
+                                <p></p>
+                            </div>
+                            <p><b>Mobile No.: </b></p>
+                        </div>
+                        <button class="btn" id="btn-primary">
+                            <div style="display: inline-flex">
+                                Service Charge:
+                                <p id="service_tax"></p>
+                                %
+                            </div>
+                        </button>
+                        <br />
+                        <button class="btn" id="btn-primary">
+                            <div style="display: inline-flex">
+                                Delivery Charge:
+                                <p id="delivery_chrg"></p>
+                                %
+                            </div>
+                        </button>
+                        <br />
+                        <button class="btn" id="btn-true">
+                            <div style="display: inline-flex">
+                                Total Payable Amount: $
+                                <p id="total_bill"></p>
+                            </div>
+                        </button>
+                        <p class="pay" id="title">Choose an payment type :)</p>
+                        <form>
+                            <input
+                                type="radio"
+                                name="pay_type"
+                                id="pay_type"
+                                value="COD"
+                            />
+                            <label for="Payment Type">Cash On Delivery</label>
+                            <br />
+                            <input
+                                type="radio"
+                                name="pay_type"
+                                id="pay_type"
+                                value="DCC"
+                            />
+                            <label for="Payment Type">Debit/Credit Card</label>
+                            <br />
+                            <input
+                                type="radio"
+                                name="pay_type"
+                                id="pay_type"
+                                value="NB"
+                            />
+                            <label for="Payment Type">Net-Banking</label>
+                            <br />
+                            <input
+                                type="radio"
+                                name="pay_type"
+                                id="pay_type"
+                                value="DW"
+                            />
+                            <label for="Payment Type">Digital Wallet</label>
+                            <br />
+                        </form>
+                        <button
+                            class="btn"
+                            id="btn-true"
+                            onclick="place_order()"
+                        >
+                            Proceed To Pay
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </center>
+        <div class="footer" id="footer">
+            <!-- Code inserted using Javascript -->
+        </div>
+        <!-- Javascript here -->
+        <script src="/p/JS/general.js"></script>
+        <script src="/p/JS/head_foot.js"></script>
+        <script src="/p/JS/request.js"></script>
+        <script src="/p/JS/display.js"></script>
+        <script>
+            $(document).ready(function () {
+                if (getCookie("token") == "") {
+                    go_to_web("/a/login");
+                } else {
+                    get_header();
+                    get_footer();
+                    get_bill();
+                }
+            });
+        </script>
+    </body>
+</html>

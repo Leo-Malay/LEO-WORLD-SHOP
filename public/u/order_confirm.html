@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LEO-WORLD | ORDER CONFIRM</title>
+        <!-- Linking the CSS -->
+        <link rel="stylesheet" href="/p/CSS/general.css" />
+        <link rel="stylesheet" href="/p/CSS/head_foot.css" />
+        <link rel="stylesheet" href="/p/CSS/order_support.css" />
+        <!-- Linking the Jquery -->
+        <script src="/p/JS/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <div class="header" id="header">
+            <!-- Code inserted using Javascript -->
+        </div>
+        <div class="content">
+            <center>
+                <div class="order_supp" id="confirm">
+                    <p id="title">Order placed successfully!</p>
+                    <p id="desc" style="text-align: left"></p>
+                    <p id="detail">
+                        Your order will be delivered within 5-6 working days!<br />For
+                        any problem, Please feel free to contact us at Toll-Free
+                        No. xxx-xxx-xxxx
+                    </p>
+                </div>
+            </center>
+        </div>
+        <div class="footer" id="footer">
+            <!-- Code inserted using Javascript -->
+        </div>
+        <!-- Javascript here -->
+        <script src="/p/JS/general.js"></script>
+        <script src="/p/JS/head_foot.js"></script>
+        <script src="/p/JS/request.js"></script>
+        <script src="/p/JS/display.js"></script>
+        <script>
+            $(document).ready(function () {
+                if (getCookie("token") == "") {
+                    go_to_web("/a/login");
+                } else {
+                    get_header();
+                    get_footer();
+                    display_order_confirm();
+                }
+            });
+        </script>
+    </body>
+</html>

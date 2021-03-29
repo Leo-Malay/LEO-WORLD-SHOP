@@ -1,0 +1,21 @@
+.order_supp {
+    padding: 2vw;
+    width: 40vw;
+    margin: 10px;
+    color: #ffffff;
+}
+#confirm {
+    background-color: mediumseagreen;
+}
+#cancel {
+    background-color: tomato;
+}
+#desc {
+    font-size: 1.2vw;
+    letter-spacing: 1px;
+    padding: 0.5vw;
+}
+#detail {
+    font-size: 1.2vw;
+    padding: 0.5vw;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" text="&#128722;" />
+        <title>LEO-WORLD | CART</title>
+        <!-- Linking the CSS -->
+        <link rel="stylesheet" href="/p/CSS/general.css" />
+        <link rel="stylesheet" href="/p/CSS/head_foot.css" />
+        <link rel="stylesheet" href="/p/CSS/cart.css" />
+        <!-- Linking the Jquery -->
+        <script src="/p/JS/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <div class="header" id="header">
+            <!-- Code inserted using Javascript -->
+        </div>
+        <div class="content">
+            <div class="title">
+                <p id="title">Cart</p>
+            </div>
+            <div class="page-left">
+                <div class="list">
+                    <ul class="ul_list" id="ul_list">
+                        <!-- Code inserted using JS -->
+                    </ul>
+                </div>
+            </div>
+            <div class="page-right">
+                <center>
+                    <div class="bill">
+                        <p id="title">Leo-World</p>
+                        <p id="subtitle">Here is your bill!</p>
+                        <div class="page" id="bill">
+                            <!-- Code inserted using JS-->
+                        </div>
+                        <br />
+                        <button class="btn" id="btn-primary">
+                            <div style="display: inline-flex">
+                                Total: $
+                                <p id="total_cost"></p>
+                            </div>
+                        </button>
+                        <br />
+                        <button
+                            class="btn"
+                            id="btn-true"
+                            onclick="proceed_to_pay()"
+                        >
+                            Proceed to checkout
+                        </button>
+                    </div>
+                </center>
+            </div>
+        </div>
+        <div class="footer" id="footer">
+            <!-- Code inserted using Javascript -->
+        </div>
+        <!-- Javascript here -->
+        <script src="/p/JS/general.js"></script>
+        <script src="/p/JS/head_foot.js"></script>
+        <script src="/p/JS/request.js"></script>
+        <script src="/p/JS/display.js"></script>
+        <script>
+            $(document).ready(function () {
+                if (getCookie("token") == "") {
+                    go_to_web("/a/login");
+                } else {
+                    get_header();
+                    get_footer();
+                    get_cart();
+                }
+            });
+        </script>
+    </body>
+</html>

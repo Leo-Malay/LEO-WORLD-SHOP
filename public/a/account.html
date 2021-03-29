@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LEO-WORLD | MY ACCOUNT</title>
+        <!-- Linking the CSS -->
+        <link rel="stylesheet" href="/p/CSS/general.css" />
+        <link rel="stylesheet" href="/p/CSS/head_foot.css" />
+        <link rel="stylesheet" href="/p/CSS/order.css" />
+        <!-- Linking the Jquery -->
+        <script src="/p/JS/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <div class="header" id="header">
+            <!-- Code inserted using Javascript -->
+        </div>
+        <div class="content" class="page">
+            <div class="page-left">
+                <div class="form">
+                    <center>
+                        <p id="title">My Account :)</p>
+                        <div class="err" id="err"></div>
+                        <form>
+                            <table>
+                                <tr>
+                                    <td><label for="name">Name</label></td>
+                                    <td>
+                                        <input
+                                            class="input"
+                                            type="text"
+                                            name="name"
+                                            id="name"
+                                            placeholder="Name"
+                                            autocomplete="name"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="username">Username</label>
+                                    </td>
+                                    <td>
+                                        <input
+                                            class="input"
+                                            type="text"
+                                            name="username"
+                                            id="username"
+                                            placeholder="Username"
+                                            autocomplete="username"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="mobile_no"
+                                            >Mobile No.</label
+                                        >
+                                    </td>
+                                    <td>
+                                        <input
+                                            class="input"
+                                            type="text"
+                                            name="mobile_no"
+                                            id="mobile_no"
+                                            placeholder="Mobile No."
+                                            autocomplete="mobile"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="email">E-mail</label></td>
+                                    <td>
+                                        <input
+                                            class="input"
+                                            type="email"
+                                            name="email"
+                                            id="email"
+                                            placeholder="E-mail"
+                                            autocomplete="email"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="city">City</label></td>
+                                    <td>
+                                        <input
+                                            class="input"
+                                            type="text"
+                                            name="city"
+                                            id="city"
+                                            placeholder="City"
+                                            autocomplete="address-level2"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="state">State</label></td>
+                                    <td>
+                                        <input
+                                            class="input"
+                                            type="text"
+                                            name="state"
+                                            id="state"
+                                            placeholder="State"
+                                            autocomplete="address-level3"
+                                        />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="country">Country</label>
+                                    </td>
+                                    <td>
+                                        <input
+                                            class="input"
+                                            type="text"
+                                            name="country"
+                                            id="country"
+                                            placeholder="Country"
+                                            autocomplete="country"
+                                        />
+                                    </td>
+                                </tr>
+                            </table>
+                            <br />
+                        </form>
+                        <div id="editsave">
+                            <button
+                                class="btn"
+                                id="btn-primary"
+                                onclick="edit_account()"
+                            >
+                                EDIT
+                            </button>
+                        </div>
+                        <button
+                            class="btn"
+                            id="btn-primary"
+                            onclick="del_account()"
+                        >
+                            DELETE ACCOUNT
+                        </button>
+                    </center>
+                </div>
+            </div>
+            <div class="page-right">
+                <p id="title" style="text-align: center; padding-top: 20px">
+                    Your Orders :)
+                </p>
+                <div class="order" id="order"></div>
+            </div>
+        </div>
+        <div class="footer" id="footer">
+            <!-- Code inserted using Javascript -->
+        </div>
+        <!-- Javascript here -->
+        <script src="/p/JS/general.js"></script>
+        <script src="/p/JS/head_foot.js"></script>
+        <script src="/p/JS/request.js"></script>
+        <script src="/p/JS/display.js"></script>
+        <script>
+            $(document).ready(function () {
+                if (getCookie("token") == "") {
+                    go_to_web("/a/login");
+                } else {
+                    get_header();
+                    get_footer();
+                    get_account();
+                    get_order();
+                }
+            });
+        </script>
+    </body>
+</html>
