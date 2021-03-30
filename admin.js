@@ -4,12 +4,14 @@ const path = require("path");
 const jwt = require("jsonwebtoken");
 const db = require("./db");
 const { verifyToken } = require("./functions");
+const multer = require("multer");
 
 // Init Router.
 const admin = express.Router();
 
 // Getting configs.
 const product_db = config.get("db.name.product");
+const upload = multer({ dest: "/p/IMG/" });
 
 // Admin API
 // Render API
@@ -20,13 +22,12 @@ admin.get("/new_product", (req, res) => {
     res.sendFile(path.join(__dirname + "/public/su/new_product.html"));
 });
 admin.post("/get_product", verifyToken, (req, res) => {});
-admin.post("/add_product", verifyToken, (req, res) => {
+admin.post("/add_product", verifyToken, upload.single("file"), async function (req, res) {
     var token = req.token;
     jwt.verify(token, config.get("token.keyToken"), (err, result) => {
         if (err) throw err;
         var name = req.body.name;
         var price = req.body.price;
-        var img = req.body.img;
         var category = req.body.category.toUpperCase();
         var details = req.body.details;
         var specs = req.body.specs;
@@ -39,6 +40,12 @@ admin.post("/add_product", verifyToken, (req, res) => {
                     msg: "Something's Missing, Bad Request.",
                 });
             } else {
+                const imagePath = path.join(__dirname, '/public/images');
+                const fileUpload = new Resize(imagePath);
+                if (!req.file) {
+                    res.status(401).json({error: 'Please provide an image'});
+                }
+                const filename = await fileUpload.save(req.file.buffer);
                 var query = { name, isDeleted: 0 };
                 db.getDB()
                     .collection(product_db)
@@ -55,7 +62,7 @@ admin.post("/add_product", verifyToken, (req, res) => {
                             query = {
                                 name,
                                 price,
-                                img,
+                                img: filename,
                                 details,
                                 specs,
                                 category,
