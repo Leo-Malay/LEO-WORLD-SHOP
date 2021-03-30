@@ -19,6 +19,9 @@ admin.get("/", (req, res) => {
 admin.get("/new_product", (req, res) => {
     res.sendFile(path.join(__dirname + "/public/su/new_product.html"));
 });
+admin.get("/product", (req, res) => {
+    res.sendFile(path.join(__dirname + "/public/su/product.html"));
+});
 
 // Product
 admin.post("/get_product", verifyToken, (req, res) => {
@@ -144,7 +147,54 @@ admin.post("/add_product", verifyToken, (req, res) => {
         }
     });
 });
-admin.post("/ch_product", verifyToken, (req, res) => {});
+admin.post("/ch_product", verifyToken, (req, res) => {
+    var token = req.token;
+    jwt.verify(token, config.get("token.keyToken"), (err, result) => {
+        if (err) throw err;
+        if (req.body.soldBy) {
+            res.json({
+                status: 200,
+                success: false,
+                dtstamp: Date.now(),
+                msg: "Cannot update Soldby from here!",
+            });
+        } else if (result.type == "A") {
+            var query = {
+                _id: db.getOID(result.uid),
+                soldBy: result.username,
+                isDeleted: 0,
+            };
+            db.getDB()
+                .collection(product_db)
+                .updateOne(query, { $set: req.body }, (err, result1) => {
+                    if (err) throw err;
+                    if (result1.matchedCount != 0) {
+                        res.json({
+                            status: 200,
+                            success: true,
+                            dtstamp: Date.now(),
+                            msg: "Product Updated Successfully",
+                        });
+                    } else {
+                        res.json({
+                            status: 200,
+                            msg:
+                                "Were unable to update your product! Try again",
+                            success: false,
+                            dtstamp: Date.now(),
+                        });
+                    }
+                });
+        } else {
+            res.json({
+                status: 403,
+                success: false,
+                dtstamp: Date.now(),
+                msg: "You are not authorised to use this API!",
+            });
+        }
+    });
+});
 admin.post("/rm_product", verifyToken, (req, res) => {
     var token = req.token;
     jwt.verify(token, config.get("token.keyToken"), (err, result) => {
@@ -158,11 +208,7 @@ admin.post("/rm_product", verifyToken, (req, res) => {
             db.getDB()
                 .collection(user_db)
                 .updateOne(
-                    {
-                        _id: db.getOID(product_id),
-                        soldBy: result.username,
-                        isDeleted: 0,
-                    },
+                    query,
                     {
                         $set: {
                             isDeleted: 1,
