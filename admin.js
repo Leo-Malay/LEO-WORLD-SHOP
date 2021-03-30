@@ -22,7 +22,7 @@ admin.get("/new_product", (req, res) => {
     res.sendFile(path.join(__dirname + "/public/su/new_product.html"));
 });
 admin.post("/get_product", verifyToken, (req, res) => {});
-admin.post("/add_product", verifyToken, upload.single("file"), async function (req, res) {
+admin.post("/add_product", verifyToken, upload.single("file"), (req, res) => {
     var token = req.token;
     jwt.verify(token, config.get("token.keyToken"), (err, result) => {
         if (err) throw err;
@@ -40,12 +40,14 @@ admin.post("/add_product", verifyToken, upload.single("file"), async function (r
                     msg: "Something's Missing, Bad Request.",
                 });
             } else {
-                const imagePath = path.join(__dirname, '/public/images');
+                const imagePath = path.join(__dirname, "/public/images");
                 const fileUpload = new Resize(imagePath);
                 if (!req.file) {
-                    res.status(401).json({error: 'Please provide an image'});
+                    res.status(401).json({
+                        error: "Please provide an image",
+                    });
                 }
-                const filename = await fileUpload.save(req.file.buffer);
+                const filename = fileUpload.save(req.file.buffer);
                 var query = { name, isDeleted: 0 };
                 db.getDB()
                     .collection(product_db)
