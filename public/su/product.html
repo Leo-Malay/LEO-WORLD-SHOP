@@ -30,6 +30,7 @@
                                     name="name"
                                     id="name"
                                     placeholder="Name of Product"
+                                    disabled="true"
                                 />
                             </td>
                         </tr>
@@ -42,6 +43,7 @@
                                     name="price"
                                     id="price"
                                     placeholder="Price of Product"
+                                    disabled="true"
                                 />
                             </td>
                         </tr>
@@ -54,6 +56,7 @@
                                     name="img"
                                     id="img"
                                     placeholder="Image URL"
+                                    disabled="true"
                                 />
                             </td>
                         </tr>
@@ -66,6 +69,7 @@
                                     name="category"
                                     id="category"
                                     placeholder="Valid Category"
+                                    disabled="true"
                                 />
                             </td>
                         </tr>
@@ -79,6 +83,7 @@
                                     cols="30"
                                     rows="10"
                                     placeholder="Details (Can include HTML)"
+                                    disabled="true"
                                 ></textarea>
                             </td>
                         </tr>
@@ -92,14 +97,21 @@
                                     cols="30"
                                     rows="10"
                                     placeholder="Specification (Format: Name=Value;Name2=Value2;)"
+                                    disabled="true"
                                 ></textarea>
                             </td>
                         </tr>
                     </table>
                 </form>
-                <button class="btn" id="btn-primary" onclick="edit_product()">
-                    EDIT
-                </button>
+                <div id="editsave">
+                    <button
+                        class="btn"
+                        id="btn-primary"
+                        onclick="edit_product_a()"
+                    >
+                        EDIT
+                    </button>
+                </div>
                 <button class="btn" id="btn-primary" onclick="rm_product()">
                     DELETE
                 </button>
@@ -117,6 +129,7 @@
             $(document).ready(function () {
                 get_header();
                 get_footer();
+                get_product();
             });
         </script>
     </body>

@@ -180,7 +180,6 @@ function display_order(list) {
     document.getElementById("order").innerHTML = code;
 }
 function display_product(data) {
-    console.log(data);
     var code =
         '<div class="product_head"><p id="title">' +
         data.name +
@@ -238,4 +237,23 @@ function display_order_confirm() {
         "<br />Date:" +
         new Date().toLocaleString();
     document.getElementById("desc").innerHTML = code;
+}
+function edit_product_a() {
+    document.getElementById("name").disabled = false;
+    document.getElementById("price").disabled = false;
+    document.getElementById("img").disabled = false;
+    document.getElementById("detail").disabled = false;
+    document.getElementById("specs").disabled = false;
+    document.getElementById("category").disabled = false;
+    document.getElementById("editsave").innerHTML =
+        '<button class="btn" id="btn-true" onclick="save_product()">SAVE</button>';
+}
+function display_product_a(body) {
+    console.log(body);
+    document.getElementById("name").value = body.name;
+    document.getElementById("price").value = body.price;
+    document.getElementById("img").value = body.img;
+    document.getElementById("category").value = body.category;
+    document.getElementById("detail").value = body.details;
+    document.getElementById("specs").value = body.specs;
 }

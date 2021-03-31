@@ -149,6 +149,7 @@ admin.post("/add_product", verifyToken, (req, res) => {
 });
 admin.post("/ch_product", verifyToken, (req, res) => {
     var token = req.token;
+    var p_id = req.body.product_id;
     jwt.verify(token, config.get("token.keyToken"), (err, result) => {
         if (err) throw err;
         if (req.body.soldBy) {
@@ -159,8 +160,9 @@ admin.post("/ch_product", verifyToken, (req, res) => {
                 msg: "Cannot update Soldby from here!",
             });
         } else if (result.type == "A") {
+            delete req.body["product_id"];
             var query = {
-                _id: db.getOID(result.uid),
+                _id: db.getOID(p_id),
                 soldBy: result.username,
                 isDeleted: 0,
             };
@@ -200,13 +202,14 @@ admin.post("/rm_product", verifyToken, (req, res) => {
     jwt.verify(token, config.get("token.keyToken"), (err, result) => {
         if (err) throw err;
         if (result.type == "A") {
+            var product_id = req.body.product_id;
             var query = {
                 _id: db.getOID(product_id),
                 soldBy: result.username,
                 isDeleted: 0,
             };
             db.getDB()
-                .collection(user_db)
+                .collection(product_db)
                 .updateOne(
                     query,
                     {
