@@ -19,11 +19,53 @@ admin.get("/", (req, res) => {
 admin.get("/new_product", (req, res) => {
     res.sendFile(path.join(__dirname + "/public/su/new_product.html"));
 });
+admin.get("/list", (req, res) => {
+    res.sendFile(path.join(__dirname + "/public/su/list.html"));
+});
 admin.get("/product", (req, res) => {
     res.sendFile(path.join(__dirname + "/public/su/product.html"));
 });
 
 // Product
+admin.post("/get_product", verifyToken, (req, res) => {
+    var token = req.token;
+    jwt.verify(token, config.get("token.keyToken"), (err, result) => {
+        if (err) throw err;
+        if (result.type == "A") {
+            var product_id = req.body.product_id;
+            var query = {
+                _id: db.getOID(product_id),
+                soldBy: result.username,
+                isDeleted: 0,
+            };
+            db.getDB()
+                .collection(product_db)
+                .find(query, {
+                    projection: {
+                        deleteDate: 0,
+                        createDate: 0,
+                        isDeleted: 0,
+                    },
+                })
+                .toArray((err, result1) => {
+                    if (err) throw err;
+                    res.json({
+                        status: 200,
+                        success: true,
+                        dtstamp: Date.now(),
+                        body: result1,
+                    });
+                });
+        } else {
+            res.json({
+                status: 403,
+                success: false,
+                dtstamp: Date.now(),
+                msg: "You are not authorised to use this API!",
+            });
+        }
+    });
+});
 admin.post("/get_product", verifyToken, (req, res) => {
     var token = req.token;
     jwt.verify(token, config.get("token.keyToken"), (err, result) => {
@@ -251,4 +293,5 @@ admin.post("/rm_product", verifyToken, (req, res) => {
 // Order
 admin.post("/pack_order", verifyToken, (req, res) => {});
 admin.post("/deport_order", verifyToken, (req, res) => {});
+
 module.exports = admin;
