@@ -105,3 +105,48 @@ function get_product() {
         go_to_web("/a/login");
     }
 }
+function get_list() {
+    set_auth();
+    $.post("/su/list", {}, function (data, status, jqXHR) {
+        if (status == "success" && data.success == true) {
+            display_list(data.body);
+        } else {
+            alert(data.msg);
+        }
+    });
+}
+function get_order_ls() {
+    set_auth();
+    $.post("/su/order", {}, function (data, status, jqXHR) {
+        if (status == "success" && data.success == true) {
+            display_order_ls(data.body);
+        } else {
+            alert(data.msg);
+        }
+    });
+}
+function pack_deport_order(id) {
+    set_auth();
+    $.post(
+        "/su/pack_deport_order",
+        { order_id: id },
+        function (data, status, jqXHR) {
+            if (status == "success" && data.success == true) {
+                alert(data.msg);
+                document.location.reload();
+            } else {
+                alert(data.msg);
+            }
+        }
+    );
+}
+function get_admin_data() {
+    set_auth();
+    $.post("/su/admin_dash", {}, function (data, status, jqXHR) {
+        if (status == "success" && data.success == true) {
+            display_admin(data.body);
+        } else {
+            alert(data.msg);
+        }
+    });
+}

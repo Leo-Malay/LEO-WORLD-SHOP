@@ -10,6 +10,7 @@ const admin = express.Router();
 
 // Getting configs.
 const product_db = config.get("db.name.product");
+const order_db = config.get("db.name.order");
 
 // Admin API
 // Render API
@@ -26,15 +27,57 @@ admin.get("/product", (req, res) => {
     res.sendFile(path.join(__dirname + "/public/su/product.html"));
 });
 
-// Product
-admin.post("/get_product", verifyToken, (req, res) => {
+// dashboard
+admin.post("/admin_dash", verifyToken, (req, res) => {
     var token = req.token;
     jwt.verify(token, config.get("token.keyToken"), (err, result) => {
         if (err) throw err;
         if (result.type == "A") {
-            var product_id = req.body.product_id;
             var query = {
-                _id: db.getOID(product_id),
+                _id: db.getOID(result.uid),
+                username: result.username,
+                isDeleted: 0,
+            };
+            db.getDB()
+                .collection(user_db)
+                .findOne(
+                    query,
+                    {
+                        projection: {
+                            deleteDate: 0,
+                            createDate: 0,
+                            isDeleted: 0,
+                            total_rev: 1,
+                            total_order: 1,
+                        },
+                    },
+                    (err, result1) => {
+                        if (err) throw err;
+                        res.json({
+                            status: 200,
+                            success: true,
+                            dtstamp: Date.now(),
+                            body: result1,
+                        });
+                    }
+                );
+        } else {
+            res.json({
+                status: 403,
+                success: false,
+                dtstamp: Date.now(),
+                msg: "You are not authorised to use this API!",
+            });
+        }
+    });
+});
+// Product
+admin.post("/list", verifyToken, (req, res) => {
+    var token = req.token;
+    jwt.verify(token, config.get("token.keyToken"), (err, result) => {
+        if (err) throw err;
+        if (result.type == "A") {
+            var query = {
                 soldBy: result.username,
                 isDeleted: 0,
             };
@@ -291,7 +334,90 @@ admin.post("/rm_product", verifyToken, (req, res) => {
 });
 
 // Order
-admin.post("/pack_order", verifyToken, (req, res) => {});
-admin.post("/deport_order", verifyToken, (req, res) => {});
+admin.post("/order", verifyToken, (req, res) => {
+    var token = req.token;
+    jwt.verify(token, config.get("token.keyToken"), (err, result) => {
+        if (err) throw err;
+        if (result.type == "A") {
+            var query = {
+                status: { $in: [0, 1] },
+                isDeleted: 0,
+            };
+            db.getDB()
+                .collection(order_db)
+                .find(query, {
+                    projection: {
+                        uid: 0,
+                        username: 0,
+                        isDeleted: 0,
+                    },
+                })
+                .toArray((err, result1) => {
+                    if (err) throw err;
+                    res.json({
+                        status: 200,
+                        success: true,
+                        dtstamp: Date.now(),
+                        body: result1,
+                    });
+                });
+        } else {
+            res.json({
+                status: 403,
+                success: false,
+                dtstamp: Date.now(),
+                msg: "You are not authorised to use this API!",
+            });
+        }
+    });
+});
+admin.post("/pack_deport_order", verifyToken, (req, res) => {
+    var token = req.token;
+    jwt.verify(token, config.get("token.keyToken"), (err, result) => {
+        if (err) throw err;
+        if (result.type == "A") {
+            var order_id = req.body.order_id;
+            var query = {
+                _id: db.getOID(order_id),
+                isDeleted: 0,
+            };
+            db.getDB()
+                .collection(order_db)
+                .updateOne(
+                    query,
+                    {
+                        $set: {
+                            status: 2,
+                        },
+                    },
+                    (err, result1) => {
+                        if (err) throw err;
+                        if (result1.matchedCount != 0) {
+                            res.json({
+                                status: 200,
+                                success: true,
+                                dtstamp: Date.now(),
+                                msg: "Successfully Packed and Shipped",
+                            });
+                        } else {
+                            res.json({
+                                status: 200,
+                                msg: "Were unable to update order! Try again",
+                                success: false,
+                                dtstamp: Date.now(),
+                            });
+                        }
+                    }
+                );
+        } else {
+            res.json({
+                status: 403,
+                success: false,
+                dtstamp: Date.now(),
+                msg: "You are not authorised to use this API!",
+            });
+        }
+    });
+});
 
 module.exports = admin;

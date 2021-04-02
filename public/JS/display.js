@@ -149,7 +149,7 @@ function display_order(list) {
             ele.status = "PROCESSING";
         } else if (ele.status == 2) {
             ele.status = "OUT FOR DELIVERY";
-        } else if (ele.status == 2) {
+        } else if (ele.status == 3) {
             ele.status = "DELIVERED";
         }
         code +=
@@ -256,4 +256,70 @@ function display_product_a(body) {
     document.getElementById("category").value = body.category;
     document.getElementById("detail").value = body.details;
     document.getElementById("specs").value = body.specs;
+}
+function display_list(list) {
+    var code = "";
+    list.map((ele) => {
+        code +=
+            '<div class="item_box"><img src="' +
+            ele.img +
+            '" alt="Item_image" id="item_img"/><p id="item_name" onclick="go_to_web(' +
+            "'/su/product?id=" +
+            ele._id +
+            "'" +
+            ')">' +
+            ele.name +
+            '</p><center><button class="btn" id="btn-true">$' +
+            ele.price +
+            '</button><button class="btn" id="btn-primary" onclick="go_to_web(' +
+            "'/su/product?id=" +
+            ele._id +
+            "'" +
+            ')">EDIT</button></center></div>';
+    });
+    document.getElementById("content").innerHTML = code;
+}
+function display_order_ls(list) {
+    var code = "";
+    var count = 0;
+    list.map((ele) => {
+        if (ele.status == -1) {
+            ele.status = "CANCELLED";
+        } else if (ele.status == 0) {
+            ele.status = "PLACED";
+        } else if (ele.status == 1) {
+            ele.status = "PROCESSING";
+        } else if (ele.status == 2) {
+            ele.status = "OUT FOR DELIVERY";
+        } else if (ele.status == 3) {
+            ele.status = "DELIVERED";
+        }
+        count++;
+        code +=
+            '<div class="order_item" id="order_id"><button class="btn" id="btn-primary">Order Id: ' +
+            ele._id +
+            '</button><br /><button class="btn" id="btn-true">STATUS: ' +
+            ele.status.toUpperCase() +
+            '</button><button class="btn" id="btn-primary" onclick="pack_deport_order(' +
+            "'" +
+            ele._id +
+            "'" +
+            ')"';
+        if (
+            ele.status == "DELIVERED" ||
+            ele.status == "CANCELLED" ||
+            ele.status == "OUT FOR DELIVERY"
+        ) {
+            code += ' style="visibility: hidden"';
+        }
+
+        code +=
+            '>PACK & SHIP</button><button class="btn" id="btn-true">Payable Amount: $' +
+            ele.pay_amount +
+            '</button><button class="btn" id="btn-primary">Payment type: ' +
+            ele.pay_type +
+            "</button></div></div>";
+    });
+    document.getElementById("order").innerHTML = code;
+    document.getElementById("penorder").innerHTML = count;
 }

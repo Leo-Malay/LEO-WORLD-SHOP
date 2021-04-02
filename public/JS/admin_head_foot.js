@@ -13,11 +13,11 @@ function get_header() {
             "'" +
             "/su/new_product" +
             "'" +
-            ')"></a><a onclick="go_to_web(' +
+            ')">New Product</a><a onclick="go_to_web(' +
             "'" +
             "/su/list" +
             "'" +
-            ')"></a><a onclick="logout()">Logout</a></div></div></div>';
+            ')">List</a><a onclick="logout()">Logout</a></div></div></div>';
     } else {
         var head =
             '<p id="title" onclick="go_to_web(' +
