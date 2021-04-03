@@ -143,11 +143,7 @@ function ch_cart(num) {
                         ),
                     },
                     function (data, status, jqXHR) {
-                        post_pay();
-                        alert(data.msg);
-                        document.getElementsByName(
-                            "btn" + num
-                        )[0].hidden = true;
+                        document.location.reload();
                     }
                 );
             }
@@ -339,7 +335,6 @@ function get_product() {
         { product_id: xget.get("id") },
         function (data, status, jqXHR) {
             if (status == "success") {
-                console.log(data.body);
                 display_product(data.body);
             }
         }

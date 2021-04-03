@@ -28,7 +28,6 @@ function display_cart(list) {
             },
             function (data, status, jqXHR) {
                 if ((status == "success") & (data.success == true)) {
-                    console.log(data.body);
                     item =
                         '<li class="li_list" id="' +
                         ele.product_id +
@@ -249,7 +248,6 @@ function edit_product_a() {
         '<button class="btn" id="btn-true" onclick="save_product()">SAVE</button>';
 }
 function display_product_a(body) {
-    console.log(body);
     document.getElementById("name").value = body.name;
     document.getElementById("price").value = body.price;
     document.getElementById("img").value = body.img;
