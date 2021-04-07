@@ -49,7 +49,7 @@ app.use("/p", express.static("public"));
 // Starting the server.
 db.connect((err) => {
     if (err) throw err;
-    app.listen(port, "0.0.0.0", () => {
+    app.listen(port, () => {
         console.log("[+] Server Started on PORT:", port);
     });
 });
