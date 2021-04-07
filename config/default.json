@@ -3,7 +3,8 @@
         "port": "2905"
     },
     "db": {
-        "url": "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false",
+        "url": "mongodb+srv://webapp:5VfuYL73FOarFRHn@leoworld.0lqkl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+        "localurl": "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false",
         "dbname": "LEO-WORLD",
         "name": {
             "user": "users",
