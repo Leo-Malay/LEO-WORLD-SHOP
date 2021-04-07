@@ -37,7 +37,9 @@ app.use("/su", admin);
 app.use("/u", user);
 app.use("/a", auth);
 app.use("/p", express.static("public"));
-
+app.get("/favicon", (req, res) => {
+    res.sendFile(path.join(__dirname + "/public/IMG/favicon.ico"));
+});
 // Starting the server.
 db.connect((err) => {
     if (err) throw err;
