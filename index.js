@@ -1,6 +1,7 @@
 const express = require("express");
 const config = require("config");
 const db = require("./db");
+const path = require("path");
 const admin = require("./admin");
 const user = require("./user");
 const auth = require("./auth");
@@ -12,6 +13,12 @@ const port = config.get("app.port");
 
 // Init app.
 const app = express();
+
+// Initial routing.
+const init = express.Router();
+init.get("/favicon", (req, res) => {
+    res.sendFile(path.join(__dirname + "/public/IMG/favicon.ico"));
+});
 
 // Setting path.
 app.use(express.static("public"));
@@ -36,10 +43,9 @@ app.use(compression());
 app.use("/su", admin);
 app.use("/u", user);
 app.use("/a", auth);
+app.use("/", init);
 app.use("/p", express.static("public"));
-app.get("/favicon", (req, res) => {
-    res.sendFile(path.join(__dirname + "/public/IMG/favicon.ico"));
-});
+
 // Starting the server.
 db.connect((err) => {
     if (err) throw err;
