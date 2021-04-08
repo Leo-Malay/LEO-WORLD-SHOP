@@ -8,9 +8,6 @@ const auth = require("./auth");
 const helmet = require("helmet");
 const compression = require("compression");
 
-// Getting config variables.
-const port = config.get("app.port");
-
 // Init app.
 const app = express();
 
@@ -18,6 +15,9 @@ const app = express();
 const init = express.Router();
 init.get("/favicon", (req, res) => {
     res.sendFile(path.join(__dirname + "/public/IMG/favicon.ico"));
+});
+init.get("/", (req, res) => {
+    res.redirect("/u/home");
 });
 
 // Setting path.
@@ -47,9 +47,10 @@ app.use("/", init);
 app.use("/p", express.static("public"));
 
 // Starting the server.
+const port = process.env.PORT || 2905;
 db.connect((err) => {
     if (err) throw err;
-    app.listen(process.env.PORT, () => {
+    app.listen(port, () => {
         console.log("[+] Server Started on PORT:", port);
     });
 });
